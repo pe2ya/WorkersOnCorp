@@ -22,7 +22,7 @@ namespace test
         {
             for (int i = 0; i < number; i++)
             {
-                int position = rnd.Next(0, 3);
+                int position = rnd.Next(0, 10);
                 int salary = rnd.Next(10, 31);
                 salary *= 100;
                 int year = rnd.Next(2007, 2022);
@@ -37,15 +37,23 @@ namespace test
                     vacation = true;
                 }
 
-                if (position == 1)
+                if (position <= 6)
                 {
-                    salary *= 2;
+                    position = 0;
                 }
 
-                if (position == 2)
+                if (position <9 && position > 6)
+                {
+                    salary *= 2;
+                    position = 1;
+                }
+
+                if (position == 9)
                 {
                     salary *= 5;
+                    position = 2;
                 }
+
 
                 list.Add(new zamestnanes((Position)position, names[namesNumber], surnames[surnamesNumber], salary, new DateTime(year, mounth, day), vacation));
             }
@@ -95,6 +103,15 @@ namespace test
             }
 
             return result;
+        }
+
+        public string Count() 
+        {
+            int nWorker = list.Count(x => x.CurrentPosition == 0);
+            int nManager = list.Count(x => x.CurrentPosition == (Position)1);
+            int nDerector = list.Count(x => x.CurrentPosition == (Position)2);
+
+            return "Workers: " + nWorker + "\nManagers: " + nManager + "\nDerectors: " + nDerector;
         }
     }
 }

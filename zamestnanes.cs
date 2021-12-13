@@ -20,7 +20,6 @@ namespace test
         public int Salary{ get; set; }
         public Position CurrentPosition { get; set; }
         public DateTime Date { get; set; }
-
         public bool Vacation { get; set; }
 
         public zamestnanes(Position position, string name, string surname, int salary, DateTime date, bool vacation)
